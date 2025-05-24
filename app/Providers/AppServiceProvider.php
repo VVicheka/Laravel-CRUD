@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    protected $policies = [
+        Feature::class => FeaturePolicy::class,
+    ];
+
     /**
      * Bootstrap any application services.
      */

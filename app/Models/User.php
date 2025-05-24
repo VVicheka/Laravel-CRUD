@@ -64,7 +64,7 @@ class User extends Authenticatable
      */
     public function isAuthor()
     {
-        return $this->role === 'author';
+        return $this->role === 'user';
     }
     
     /**

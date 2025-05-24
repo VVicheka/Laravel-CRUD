@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FeartureController;
+use App\Http\Controllers\FeatureController;
 
-Route::get('/', [FeartureController::class, 'display'])->name('features.features');
-Route::get('/backend', [FeartureController::class, 'index'])->name('features.index');
-Route::get('/backend/create', [FeartureController::class, 'create'])->name('features.create');
-Route::post('/backend', [FeartureController::class, 'store'])->name('features.store');
-Route::get('/backend/{feature}/edit', [FeartureController::class, 'edit'])->name('features.edit');
-Route::put('/backend/{feature}/update', [FeartureController::class, 'update'])->name('features.update');
-Route::delete('/backend/{feature}/destroy', [FeartureController::class, 'destroy'])->name('features.destroy');
+Route::get('/feature', [FeatureController::class, 'display'])->name('features.features');
+Route::get('/backend', [FeatureController::class, 'index'])->name('features.index');
+Route::get('/backend/create', [FeatureController::class, 'create'])->name('features.create');
+Route::post('/backend', [FeatureController::class, 'store'])->name('features.store');
+Route::get('/backend/{feature}/edit', [FeatureController::class, 'edit'])->name('features.edit');
+Route::put('/backend/{feature}/update', [FeatureController::class, 'update'])->name('features.update');
+Route::delete('/backend/{feature}/destroy', [FeatureController::class, 'destroy'])->name('features.destroy');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();

@@ -6,25 +6,41 @@ use Illuminate\Http\Request;
 use App\Models\Feature;
 use Illuminate\Support\Facades\Storage;
 
-class FeartureController extends Controller
+class FeatureController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
+        // Authorize 'viewAny' action
+        $this->authorize('viewAny', Feature::class);
+
         $order = $request->get('order', 'asc');
         $features = Feature::orderBy('id', $order)->get();
         
         return view('features.index', compact('features', 'order'));
     }
 
-    public function display(){
+    public function display()
+    {
+        // Authorize 'viewAny' action
+        $this->authorize('viewAny', Feature::class);
+
         $features = Feature::orderBy('id', 'asc')->get();
         return view('features.features', ['features' => $features]);
     }
 
-    public function create(){
+    public function create()
+    {
+        // Authorize 'create' action
+        $this->authorize('create', Feature::class);
+
         return view('features.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // Authorize 'create' action
+        $this->authorize('create', Feature::class);
+
         $data = $request->validate([
             'name' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -41,11 +57,19 @@ class FeartureController extends Controller
         return redirect(route('features.index'))->with('success', 'Feature created successfully');
     }
 
-    public function edit(Feature $feature){
-        return view('features.edit', ['feature'=> $feature]);
+    public function edit(Feature $feature)
+    {
+        // Authorize 'update' action
+        $this->authorize('update', $feature);
+
+        return view('features.edit', ['feature' => $feature]);
     }
 
-    public function update(Feature $feature, Request $request){
+    public function update(Feature $feature, Request $request)
+    {
+        // Authorize 'update' action
+        $this->authorize('update', $feature);
+
         $data = $request->validate([
             'name' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -67,7 +91,11 @@ class FeartureController extends Controller
         return redirect(route('features.index'))->with('success', 'Feature Updated Successfully');
     }
 
-    public function destroy(Feature $feature){
+    public function destroy(Feature $feature)
+    {
+        // Authorize 'delete' action
+        $this->authorize('delete', $feature);
+
         $feature->delete();
         return redirect(route('features.index'))->with('success', 'Feature Deleted Successfully');
     }
