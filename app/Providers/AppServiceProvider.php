@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Feature;
+use App\Policies\FeaturePolicy;
 
 class AppServiceProvider extends ServiceProvider
 {

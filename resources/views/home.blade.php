@@ -15,6 +15,16 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <div class="mt-4 d-flex gap-2">
+                        <a href="{{route('features.features')}}" class="btn btn-primary">
+                            View Features
+                        </a>
+
+                        <a href="{{route('features.index')}}" class="btn btn-primary">
+                            Manage Features
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

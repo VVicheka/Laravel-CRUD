@@ -62,7 +62,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isAuthor()
+    public function isUser()
     {
         return $this->role === 'user';
     }

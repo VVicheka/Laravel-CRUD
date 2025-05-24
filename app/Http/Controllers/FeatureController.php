@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Feature;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class FeatureController extends Controller
 {
@@ -51,6 +52,8 @@ class FeatureController extends Controller
             $path = $request->file('image')->store('images', 'public');
             $data['image'] = $path;
         }
+        
+        $data['user_id'] = Auth::id();
 
         $newFeature = Feature::create($data);
 

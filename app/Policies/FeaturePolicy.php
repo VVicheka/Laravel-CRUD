@@ -31,7 +31,7 @@ class FeaturePolicy
     public function create(User $user): bool
     {
         // Only admin and author can create features
-        return $user->isAdmin() || $user->isAuthor();
+        return $user->isAdmin() || $user->isUser();
     }
 
     /**
@@ -45,7 +45,7 @@ class FeaturePolicy
         }
 
         // Authors can only update their own features
-        if ($user->isAuthor()) {
+        if ($user->isUser()) {
             return $user->id === $feature->user_id;
         }
 
@@ -63,7 +63,7 @@ class FeaturePolicy
         }
 
         // Authors can only delete their own features
-        if ($user->isAuthor()) {
+        if ($user->isUser()) {
             return $user->id === $feature->user_id;
         }
 

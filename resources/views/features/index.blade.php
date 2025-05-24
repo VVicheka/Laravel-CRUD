@@ -18,6 +18,9 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Features</h3>
                         <div>
+                            <a href="{{ route('home') }}" class="btn btn-secondary me-2">
+                               <i class="bi bi-house-door me-1"></i> Back to Home
+                            </a>
                             <a href="{{ route('features.index', ['order' => 'asc']) }}" 
                                class="btn btn-sm {{ request('order', 'asc') === 'asc' ? 'btn-primary' : 'btn-outline-primary' }}">
                                 <i class="bi bi-sort-down"></i> ASC
